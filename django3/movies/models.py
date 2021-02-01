@@ -78,7 +78,7 @@ class Movie(models.Model):
         on_delete=models.SET_NULL, null=True
     )
     url = models.SlugField(max_length=128, unique=True)
-    is_draft = models.BooleanField('Черновик?', default=True)
+    is_draft = models.BooleanField('Черновик', default=True)
 
     def __str__(self):
         return self.title

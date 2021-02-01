@@ -87,28 +87,11 @@
 
         <h3 class="shop-sing editContent" >
             О фильме {{ movie.title }}</h3>
-        <p class="editContent" >{{ movie.description }}</p>
+        <p class="editContent" >{{ movie.description|safe }}</p>
         <p>
             {% for image in movie.movieshot_set.all %}
             <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.description }}" style="max-width: 250px;">
             {% endfor %}
-        </p>
-        <p class="mt-3 italic-blue editContent">
-            <iframe width="560" height="315"
-                    src="https://www.youtube.com/embed/A36LahZNUiE?controls=0"
-                    frameborder="0" allow="accelerometer; autoplay;
-                                                            encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-
-            </iframe>
-        </p>
-        <p class="mt-3 editContent" >
-            Человечество дорого заплатило за технический прогресс, поставив под
-            угрозу свое выживание.
-            Пришло время покончить с войной между машинами и людьми.
-            Научно-фантастический боевик,
-            заключительная часть трилогии, перезапускающей франшизу «Терминатора»
-            Джеймса Кэмерона.
         </p>
     </div>
     <hr>
