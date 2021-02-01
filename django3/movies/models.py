@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -77,10 +78,13 @@ class Movie(models.Model):
         on_delete=models.SET_NULL, null=True
     )
     url = models.SlugField(max_length=128, unique=True)
-    is_draft = models.BooleanField('', default=True)
+    is_draft = models.BooleanField('Черновик?', default=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'slug': self.url})
 
     class Meta:
         verbose_name = 'Фильм'
@@ -113,6 +117,7 @@ class RatingStar(models.Model):
 
     class Meta:
         verbose_name = 'Звёзды рейтинга'
+        verbose_name_plural = 'Звёзды рейтинга'
 
 
 class Rating(models.Model):
