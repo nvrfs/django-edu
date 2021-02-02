@@ -63,7 +63,6 @@ class MovieAdmin(admin.ModelAdmin):
     def get_image(self, obj):
         return mark_safe(f'<img src={obj.poster.url} width="50">')
 
-    # TODO refactoring
     def publish(self, request, queryset):
         row_update = queryset.update(is_draft=False)
         self.message_user(request, f'записей обновлено: {row_update}')
