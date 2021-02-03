@@ -119,11 +119,12 @@ class RatingStar(models.Model):
     value = models.SmallIntegerField('', default=0)
 
     def __str__(self):
-        return self.value
+        return str(self.value)
 
     class Meta:
         verbose_name = 'Звёзды рейтинга'
         verbose_name_plural = 'Звёзды рейтинга'
+        ordering = ['-value']
 
 
 class Rating(models.Model):
