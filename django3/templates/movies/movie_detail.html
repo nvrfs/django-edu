@@ -1,5 +1,5 @@
 {% extends 'movies/base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block title %}{{ movie.title }}{% endblock title %}
 {% block movies %}
 <div class="left-ads-display col-lg-9">
@@ -12,41 +12,41 @@
                 {{ movie.title }}</h3>
             <h5 class="editContent">Terminator: Dark Fate</h5>
             <ul>
-                <li><span><b>Год:</b> {{ movie.year }}</span></li>
-                <li><span><b>Страна:</b> {{ movie.country }}</span>
+                <li><span><b>{% trans Год %}:</b> {{ movie.year }}</span></li>
+                <li><span><b>{% trans Страна %}:</b> {{ movie.country }}</span>
                 </li>
-                <li><span><b>Слоган:</b> {{ movie.tagline }}</span>
+                <li><span><b>{% trans Слоган %}:</b> {{ movie.tagline }}</span>
                 </li>
-                <li><span><b>Режиссер:</b> 
+                <li><span><b>{% trans Режиссер %}:</b> 
                     {% for director in movie.directors.all %}
                         <a href="{{ director.get_absolute_url }}">{{ director.name }}</a>
                     {% endfor %}</span>
                 </li>
-                <li><span><b>Актеры:</b> 
+                <li><span><b>{% trans Актеры %}:</b> 
                     {% for actor in movie.actors.all %}
                         <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
                     {% endfor %}
                     </span>
                 </li>
-                <li><span><b>Жанр:</b> 
+                <li><span><b>{% trans Жанр %}:</b> 
                 
                 {% for genre in movie.genres.all %}
                     {{ genre.name }}
                 {% endfor %}
                     </span>
                 </li>
-                <li><span><b>Премьера в мире:</b> {{ movie.world_premiere }}</span>
+                <li><span><b>{% trans Премьера в мире %}:</b> {{ movie.world_premiere }}</span>
                 </li>
                 <li>
-                    <span><b>Бюджет:</b> ${{ movie.budget }}</span></li>
+                    <span><b>{% trans Бюджет %}:</b> ${{ movie.budget }}</span></li>
                 <li>
-                    <span><b>Сборы в США:</b> ${{ movie.usa_fees }}</span></li>
-                <li><span><b>Сборы в мире:</b> ${{ movie.worldwide_fees }}</span>
+                    <span><b>{% trans Сборы в США %}:</b> ${{ movie.usa_fees }}</span></li>
+                <li><span><b>{% trans Сборы в мире %}:</b> ${{ movie.worldwide_fees }}</span>
                 </li>
                 <li>
                     <form action="{% url 'add_rating' %}" method="post" name="rating">
                         {% csrf_token %}
-                        <b>Рейтинг:</b>
+                        <b>{% trans Рейтинг %}:</b>
                         <input type="hidden" value="{{ movie.id }}" name="movie">
                         <span class="rating">
                             {% for k, v in star_form.fields.star.choices %}
@@ -87,7 +87,7 @@
     <div class="row sub-para-w3layouts mt-5">
 
         <h3 class="shop-sing editContent">
-            О фильме {{ movie.title }}</h3>
+            {% trans О фильме %} {{ movie.title }}</h3>
         <p class="editContent">{{ movie.description|safe }}</p>
         <p>
             {% for image in movie.movieshot_set.all %}
@@ -107,14 +107,14 @@
                     <input type="hidden" name="parent" id="contactParent" value="">
                     <div class="form-group editContent">
                         <label for="contactComment" class="editContent">
-                            Ваш комментарий*
+                            {% trans Ваш комментарий %}*
                         </label>
                         {{ form.text }}
                     </div>
                     <div class="d-sm-flex">
                         <div class="col-sm-6 form-group p-0 editContent">
                             <label for="contactusername" class="editContent">
-                                Имя*
+                                {% trans Имя %}*
                             </label>
                             {{ form.name }}
                         </div>
@@ -127,7 +127,7 @@
                         {{ form.captcha }}
                     </div>
                     <button type="submit" class="mt-3 btn btn-success btn-block py-3">
-                            Отправить
+                            {% trans Отправить %}
                     </button>
                 </form>
             </div>
