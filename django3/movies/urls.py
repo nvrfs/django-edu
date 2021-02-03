@@ -7,13 +7,15 @@ from .views import (
     MoviesJSONFilteredView,
     MoviesFilteredView,
     MovieDetailView,
-    MoviesListView
+    MoviesListView,
+    SearchView,
 )
 
 urlpatterns = [
     path('', MoviesListView.as_view(), name='movies_list'),
     path('rating/', AddRatingView.as_view(), name='add_rating'),
     path('filter/', MoviesFilteredView.as_view(), name='movies_filter'),
+    path('search/', SearchView.as_view(), name='search'),
     path('json-filter/', MoviesJSONFilteredView.as_view(), name='json_filter'),
     path('<slug:slug>/', MovieDetailView.as_view(), name='movie_detail'),
     path('review/<int:pk>/', AddReviewView.as_view(), name='add_review'),
